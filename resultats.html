@@ -40,10 +40,10 @@
       <form id="filtres" class="filtres__corps">
         <fieldset id="filtre-zone">
           <legend>Où acheter</legend>
-          <label class="case"><input type="radio" name="zone" value="paris"> À Paris</label>
+          <label class="case"><input type="radio" name="zone" value="martinique"> En Martinique</label>
           <label class="case"><input type="radio" name="zone" value="en-ligne"> En ligne</label>
         </fieldset>
-        <div>
+        <div id="filtres-prix">
           <label class="titre" for="filtre-budget">Budget</label>
           <select id="filtre-budget" name="budget">
             <option value="">Tous les budgets</option>
@@ -53,6 +53,7 @@
             <option>100–200 €</option>
             <option>200 € et plus</option>
           </select>
+          <p class="filtres__aide" id="aide-budget" hidden>Les prix des boutiques de Martinique ne sont pas encore relevés.</p>
         </div>
         <fieldset>
           <legend>Type de cadeau</legend>

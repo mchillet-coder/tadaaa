@@ -101,6 +101,434 @@ window.TADAAA_CATALOGUE = {
          "univers" : "Ateliers d'artisanat à offrir"
       }
    },
+   "boutiquesMartinique" : [
+      {
+         "adresse" : "26 rue Ernest Deproge, 97200 Fort-de-France (aussi L'Atelier Tilo au Lamentin et à l'aéroport)",
+         "alcool" : false,
+         "categories" : [
+            "Mode & accessoires",
+            "Déco & maison"
+         ],
+         "commune" : "Fort-de-France",
+         "infoPratique" : "",
+         "lien" : "https://facebook.com/tiloMartinique",
+         "lienType" : "facebook",
+         "nom" : "Tilo",
+         "pourQui" : [
+            "Tout le monde",
+            "Secret Santa"
+         ],
+         "produits" : "T-shirts personnalisables, madras, objets déco, bijoux, petits cadeaux",
+         "telephone" : "05 96 60 31 31",
+         "univers" : "Souvenirs, artisanat, made in Martinique",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Rue Bouille, 97250 Saint-Pierre (face au marché)",
+         "alcool" : true,
+         "categories" : [
+            "Gastronomie",
+            "Déco & maison"
+         ],
+         "commune" : "Saint-Pierre",
+         "infoPratique" : "",
+         "lien" : "https://facebook.com/LaReserveCreoleFWI",
+         "lienType" : "facebook",
+         "nom" : "La Réserve Créole",
+         "pourQui" : [
+            "Couple",
+            "Famille",
+            "Homme"
+         ],
+         "produits" : "Produits gastronomiques locaux, rhums, artisanat",
+         "telephone" : "06 96 83 62 58",
+         "univers" : "Concept store : artisanat local, épicerie, rhums et vins",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Ducos (atelier sur rendez-vous)",
+         "alcool" : false,
+         "categories" : [
+            "Mode & accessoires",
+            "Déco & maison"
+         ],
+         "commune" : "Ducos",
+         "infoPratique" : "Atelier sur rendez-vous : pas de boutique ouverte au public",
+         "lien" : "https://instagram.com/baba_figue_creations",
+         "lienType" : "instagram",
+         "nom" : "Baba Figue Créations",
+         "pourQui" : [
+            "Femme"
+         ],
+         "produits" : "Bijoux argent/plaqué or avec graines et pierres, objets en madras et fibres naturelles",
+         "telephone" : "06 96 50 77 15",
+         "univers" : "Créatrice : bijoux et déco faits main",
+         "venteEnLigne" : true
+      },
+      {
+         "adresse" : "11 rue Justin Roc, 97223 Le Diamant",
+         "alcool" : true,
+         "categories" : [
+            "Gastronomie",
+            "Mode & accessoires",
+            "Livres",
+            "Beauté & soin"
+         ],
+         "commune" : "Le Diamant",
+         "infoPratique" : "",
+         "lien" : "https://instagram.com/espritnomade.mada",
+         "lienType" : "instagram",
+         "nom" : "Esprit Nomade",
+         "pourQui" : [
+            "Femme",
+            "Homme",
+            "Couple"
+         ],
+         "produits" : "Bijoux en graines, épices, rhums arrangés, cacao, cosmétiques bio, livres d'auteurs martiniquais",
+         "telephone" : "06 96 36 62 27",
+         "univers" : "Artisanat caribéen, épicerie, mode, livres",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Rue de la Plage, bord de mer, 97222 Case-Pilote",
+         "alcool" : false,
+         "categories" : [
+            "Mode & accessoires",
+            "Livres"
+         ],
+         "commune" : "Case-Pilote",
+         "infoPratique" : "Horaires réduits : appeler avant",
+         "lien" : "https://instagram.com/lacasemadisail",
+         "lienType" : "instagram",
+         "nom" : "La Case by Madisail",
+         "pourQui" : [
+            "Femme",
+            "Ado"
+         ],
+         "produits" : "Bijoux en graines et calebasse, sacs en filets de pêche et voiles de kite recyclés, livres",
+         "telephone" : "06 96 01 00 63",
+         "univers" : "Créateurs locaux éco-responsables",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Quartier Raisin, route de Bois Lancy, 97231 Le Robert",
+         "alcool" : false,
+         "categories" : [
+            "Gastronomie"
+         ],
+         "commune" : "Le Robert",
+         "infoPratique" : "",
+         "lien" : "https://kfeco-martinique.com",
+         "lienType" : "site",
+         "nom" : "K'Féco",
+         "pourQui" : [
+            "Tout le monde",
+            "Collègue"
+         ],
+         "produits" : "Tablettes de chocolat cru, chocolats fourrés aux fruits locaux, pâte à tartiner coco, infusions de cacao",
+         "telephone" : "",
+         "univers" : "Chocolatier : chocolat cru et produits du cacao",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "23 rue du Professeur Raymond Garcin, route de Didier, 97200 Fort-de-France (aussi C.C. La Galleria au Lamentin et Château Gaillard aux Trois-Îlets)",
+         "alcool" : true,
+         "categories" : [
+            "Gastronomie"
+         ],
+         "commune" : "Fort-de-France",
+         "infoPratique" : "",
+         "lien" : "https://www.frereslauzea.fr",
+         "lienType" : "site",
+         "nom" : "Frères Lauzéa",
+         "pourQui" : [
+            "Tout le monde",
+            "Collègue",
+            "Couple"
+         ],
+         "produits" : "Bonbons de chocolat, coffrets, tablettes, pâtes à tartiner, pâtes de fruits, liqueurs",
+         "telephone" : "",
+         "univers" : "Chocolatier martiniquais",
+         "venteEnLigne" : true
+      },
+      {
+         "adresse" : "4 ZAC du Lareinty, 97232 Le Lamentin",
+         "alcool" : false,
+         "categories" : [
+            "Gastronomie",
+            "Expériences & ateliers"
+         ],
+         "commune" : "Le Lamentin",
+         "infoPratique" : "",
+         "lien" : "https://www.mondedesepices.fr/benedicte-chocolats",
+         "lienType" : "site",
+         "nom" : "Bénédicte Chocolats",
+         "pourQui" : [
+            "Tout le monde",
+            "Couple"
+         ],
+         "produits" : "Coffrets de 6 ou 12 bonbons, tablettes au cacao de Martinique, ateliers chocolat",
+         "telephone" : "",
+         "univers" : "Chocolatière artisanale, bean to bar",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Habitation Céron, 97250 Le Prêcheur",
+         "alcool" : false,
+         "categories" : [
+            "Gastronomie"
+         ],
+         "commune" : "Le Prêcheur",
+         "infoPratique" : "",
+         "lien" : "https://instagram.com/la_fabriquede_julie",
+         "lienType" : "instagram",
+         "nom" : "La Fabrique de Julie – Habitation Céron",
+         "pourQui" : [
+            "Famille",
+            "Femme"
+         ],
+         "produits" : "Tablette noire 70 %, Bananette, pâte à tartiner, confitures, caramel coco",
+         "telephone" : "",
+         "univers" : "Chocolat et douceurs de l'habitation",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Domaine de Château Gaillard, 97229 Les Trois-Îlets",
+         "alcool" : false,
+         "categories" : [
+            "Beauté & soin",
+            "Bougies & parfums",
+            "Expériences & ateliers"
+         ],
+         "commune" : "Les Trois-Îlets",
+         "infoPratique" : "",
+         "lien" : "https://www.1001senteurs972.com",
+         "lienType" : "site",
+         "nom" : "1001 Senteurs",
+         "pourQui" : [
+            "Femme",
+            "Ado",
+            "Secret Santa"
+         ],
+         "produits" : "Savons faits main, bar à parfums, ateliers savon et parfum",
+         "telephone" : "",
+         "univers" : "Savonnerie et parfumerie artisanale",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Domaine de Château Gaillard, 97229 Les Trois-Îlets",
+         "alcool" : false,
+         "categories" : [
+            "Art de la table",
+            "Déco & maison"
+         ],
+         "commune" : "Les Trois-Îlets",
+         "infoPratique" : "",
+         "lien" : "https://instagram.com/les_sales_gosses_martinique",
+         "lienType" : "instagram",
+         "nom" : "Les Sales Gosses",
+         "pourQui" : [
+            "Femme",
+            "Couple"
+         ],
+         "produits" : "Assiettes, bols, mugs, vide-poches, mini-portraits, pièces sur commande",
+         "telephone" : "",
+         "univers" : "Céramique peinte à la main",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "2 place Abbé Mortand, 97227 Sainte-Anne",
+         "alcool" : false,
+         "categories" : [
+            "Jouets enfant",
+            "Déco & maison",
+            "Mode & accessoires"
+         ],
+         "commune" : "Sainte-Anne",
+         "infoPratique" : "",
+         "lien" : "https://facebook.com/boutique.etcetera",
+         "lienType" : "facebook",
+         "nom" : "Boutique Etcetera",
+         "pourQui" : [
+            "Enfant",
+            "Famille",
+            "Tout le monde"
+         ],
+         "produits" : "Jeux et jouets traditionnels, sculptures, sacs madras, arts de la table, instruments traditionnels",
+         "telephone" : "",
+         "univers" : "Souvenirs, déco, jouets traditionnels, mode plage",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Morne Pitault, Croix Rivail, 97232 Le Lamentin",
+         "alcool" : false,
+         "categories" : [
+            "Jouets enfant"
+         ],
+         "commune" : "Le Lamentin",
+         "infoPratique" : "",
+         "lien" : "https://instagram.com/madindolls",
+         "lienType" : "instagram",
+         "nom" : "Madin Dolls (poupées madras artisanales)",
+         "pourQui" : [
+            "Enfant",
+            "Bébé"
+         ],
+         "produits" : "Poupées en robe madras, tenues créoles, poupées personnalisées",
+         "telephone" : "",
+         "univers" : "Poupées faites main en Martinique",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Domaine de l'Acajou, 97240 Le François",
+         "alcool" : true,
+         "categories" : [
+            "Gastronomie",
+            "Livres"
+         ],
+         "commune" : "Le François",
+         "infoPratique" : "",
+         "lien" : "https://www.rhum-clement.com",
+         "lienType" : "site",
+         "nom" : "Habitation Clément – L'Atelier des Sens",
+         "pourQui" : [
+            "Homme",
+            "Couple"
+         ],
+         "produits" : "Rhums Clément, chocolats, confitures, liqueurs, parfums, artisanat, livres",
+         "telephone" : "",
+         "univers" : "Boutique de la distillerie Clément",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Quartier Poterie, 97229 Les Trois-Îlets",
+         "alcool" : false,
+         "categories" : [
+            "Déco & maison",
+            "Mode & accessoires",
+            "Expériences & ateliers"
+         ],
+         "commune" : "Les Trois-Îlets",
+         "infoPratique" : "",
+         "lien" : "https://www.poterie-village.fr",
+         "lienType" : "site",
+         "nom" : "Les boutiques du Village de la Poterie",
+         "pourQui" : [
+            "Tout le monde"
+         ],
+         "produits" : "Céramique, bijoux, savons, verre gravé, déco, cours de poterie",
+         "telephone" : "",
+         "univers" : "Village d'artisans : céramistes, bijoutiers, savonniers, graveurs sur verre",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Village de la Poterie, 97229 Les Trois-Îlets",
+         "alcool" : false,
+         "categories" : [
+            "Art de la table",
+            "Déco & maison",
+            "Expériences & ateliers"
+         ],
+         "commune" : "Les Trois-Îlets",
+         "infoPratique" : "",
+         "lien" : "",
+         "lienType" : "",
+         "nom" : "L'Atelier Caraïbe",
+         "pourQui" : [
+            "Couple",
+            "Femme"
+         ],
+         "produits" : "Poterie utilitaire et décorative, carafes, lampes, pièces sur mesure, cours de poterie",
+         "telephone" : "05 96 68 25 41",
+         "univers" : "Potier (Jocelyn Marignan)",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "46 Village de la Poterie, 97229 Les Trois-Îlets",
+         "alcool" : false,
+         "categories" : [
+            "Bougies & parfums"
+         ],
+         "commune" : "Les Trois-Îlets",
+         "infoPratique" : "",
+         "lien" : "https://www.labougieaimee.com",
+         "lienType" : "site",
+         "nom" : "La Bougie Aimée",
+         "pourQui" : [
+            "Femme",
+            "Couple",
+            "Secret Santa"
+         ],
+         "produits" : "Bougies à la cire de soja et pierres semi-précieuses, bougies de massage, diffuseurs",
+         "telephone" : "",
+         "univers" : "Bougies artisanales",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "694 rue Bois Carré, Floraindre, Villa le Baobab Rouge, 97232 Le Lamentin",
+         "alcool" : false,
+         "categories" : [
+            "Bougies & parfums"
+         ],
+         "commune" : "Le Lamentin",
+         "infoPratique" : "",
+         "lien" : "https://www.ysnay.com",
+         "lienType" : "site",
+         "nom" : "Ysnay",
+         "pourQui" : [
+            "Femme",
+            "Couple",
+            "Collègue"
+         ],
+         "produits" : "Bougies cabosse de cacao, fruit à pain, pomme cannelle ; parfums solides, diffuseurs",
+         "telephone" : "",
+         "univers" : "Bougies et parfums d'ambiance aux senteurs locales",
+         "venteEnLigne" : true
+      },
+      {
+         "adresse" : "Quartier Les Citronnelles, 97222 Case-Pilote",
+         "alcool" : false,
+         "categories" : [
+            "Art de la table",
+            "Déco & maison",
+            "Expériences & ateliers"
+         ],
+         "commune" : "Case-Pilote",
+         "infoPratique" : "Atelier : appeler avant de passer",
+         "lien" : "https://instagram.com/catherinebland_ceramiques",
+         "lienType" : "instagram",
+         "nom" : "Catherine Bland Céramiques",
+         "pourQui" : [
+            "Femme",
+            "Couple"
+         ],
+         "produits" : "Objets déco, vaisselle, sculptures, contenants de bougies (avec Ysnay), initiations poterie",
+         "telephone" : "",
+         "univers" : "Céramiste",
+         "venteEnLigne" : false
+      },
+      {
+         "adresse" : "Parking du centre commercial Place d'Armes, 97232 Le Lamentin",
+         "alcool" : false,
+         "categories" : [
+            "Déco & maison",
+            "Art de la table"
+         ],
+         "commune" : "Le Lamentin",
+         "infoPratique" : "",
+         "lien" : "https://www.boisnature.fr",
+         "lienType" : "site",
+         "nom" : "Bois Nature",
+         "pourQui" : [
+            "Couple",
+            "Famille"
+         ],
+         "produits" : "Luminaires, miroirs, art de la table, linge de maison, objets déco, senteurs, thés",
+         "telephone" : "",
+         "univers" : "Déco et mobilier en bois",
+         "venteEnLigne" : false
+      }
+   ],
    "budgets" : [
       "Moins de 25 €",
       "25–50 €",
@@ -5301,6 +5729,7 @@ window.TADAAA_CATALOGUE = {
       }
    ],
    "genereLe" : "2026-11-09",
-   "source" : "Tadaaa-catalogue-Paris-200-cadeaux.xlsx"
+   "source" : "Tadaaa-catalogue-Paris-200-cadeaux.xlsx",
+   "sourceMartinique" : "Tadaaa-boutiques-Martinique.xlsx"
 }
 ;

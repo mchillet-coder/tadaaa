@@ -95,33 +95,35 @@
   /* ---------- Questions du quiz ----------
      Chaque question correspond à une colonne du catalogue :
      occasion → « Occasion », qui → « Pour qui », budget → « Budget »,
-     passions + caractere → « Univers », format → « Catégorie ». */
+     passions + caractere → « Univers », format → « Catégorie ».
+     Pour les boutiques de Martinique (pas encore de produits relevés),
+     « cats » relie chaque passion aux « Catégories quiz » de la fiche boutique. */
   var PASSIONS = [
-    { id: 'design', label: 'Déco & design', univers: ['Design'] },
-    { id: 'creatif', label: 'Créatif', univers: ['Créatif'] },
-    { id: 'gourmand', label: 'Gourmandise', univers: ['Gourmand', 'Café & thé'] },
-    { id: 'nature', label: 'Nature & plantes', univers: ['Nature'] },
-    { id: 'cocooning', label: 'Cocooning', univers: ['Cocooning'] },
-    { id: 'bienetre', label: 'Bien-être', univers: ['Bien-être', 'Sport & bien-être'] },
-    { id: 'jeux', label: 'Jeux', univers: ['Jeux', 'Jeux vidéo'] },
-    { id: 'humour', label: 'Humour', univers: ['Humour'] },
-    { id: 'voyage', label: 'Voyage & montagne', univers: ['Voyage', 'Montagne'] },
-    { id: 'paris', label: 'Paris', univers: ['Paris'] },
-    { id: 'lecture', label: 'Lecture', univers: ['Lecture'] },
-    { id: 'curiosite', label: 'Sciences & curiosités', univers: ['Curiosité', 'Astro', 'Animaux'] },
-    { id: 'mode', label: 'Mode', univers: ['Mode'] },
-    { id: 'tech', label: 'Tech & photo', univers: ['Tech', 'Photo'] },
-    { id: 'musique', label: 'Musique', univers: ['Musique'] },
-    { id: 'amour', label: 'Amour', univers: ['Amour'] },
-    { id: 'eveil', label: 'Éveil des tout-petits', univers: ['Éveil', 'Famille'] }
+    { id: 'design', label: 'Déco & design', univers: ['Design'], cats: ['Déco & maison', 'Art de la table'] },
+    { id: 'creatif', label: 'Créatif', univers: ['Créatif'], cats: ['Expériences & ateliers', 'Déco & maison'] },
+    { id: 'gourmand', label: 'Gourmandise', univers: ['Gourmand', 'Café & thé'], cats: ['Gastronomie'] },
+    { id: 'nature', label: 'Nature & plantes', univers: ['Nature'], cats: ['Beauté & soin', 'Bougies & parfums'] },
+    { id: 'cocooning', label: 'Cocooning', univers: ['Cocooning'], cats: ['Bougies & parfums', 'Déco & maison'] },
+    { id: 'bienetre', label: 'Bien-être', univers: ['Bien-être', 'Sport & bien-être'], cats: ['Beauté & soin', 'Bougies & parfums'] },
+    { id: 'jeux', label: 'Jeux', univers: ['Jeux', 'Jeux vidéo'], cats: ['Jouets enfant'] },
+    { id: 'humour', label: 'Humour', univers: ['Humour'], cats: [] },
+    { id: 'voyage', label: 'Voyage & montagne', univers: ['Voyage', 'Montagne'], cats: ['Livres', 'Mode & accessoires'] },
+    { id: 'paris', label: 'Paris', univers: ['Paris'], cats: [] },
+    { id: 'lecture', label: 'Lecture', univers: ['Lecture'], cats: ['Livres'] },
+    { id: 'curiosite', label: 'Sciences & curiosités', univers: ['Curiosité', 'Astro', 'Animaux'], cats: ['Livres'] },
+    { id: 'mode', label: 'Mode', univers: ['Mode'], cats: ['Mode & accessoires'] },
+    { id: 'tech', label: 'Tech & photo', univers: ['Tech', 'Photo'], cats: [] },
+    { id: 'musique', label: 'Musique', univers: ['Musique'], cats: [] },
+    { id: 'amour', label: 'Amour', univers: ['Amour'], cats: ['Bougies & parfums', 'Mode & accessoires'] },
+    { id: 'eveil', label: 'Éveil des tout-petits', univers: ['Éveil', 'Famille'], cats: ['Jouets enfant'] }
   ];
   var CARACTERES = [
-    { id: 'drole', label: 'L’humour', univers: ['Humour', 'Jeux', 'Jeux vidéo'] },
-    { id: 'confort', label: 'Le confort', univers: ['Cocooning', 'Bien-être', 'Sport & bien-être'] },
-    { id: 'beau', label: 'Les belles choses', univers: ['Design', 'Mode', 'Paris'] },
-    { id: 'curieux', label: 'La curiosité', univers: ['Curiosité', 'Lecture', 'Astro', 'Voyage', 'Montagne'] },
-    { id: 'gourmand', label: 'La gourmandise', univers: ['Gourmand', 'Café & thé'] },
-    { id: 'manuel', label: 'Le fait main', univers: ['Créatif', 'Nature', 'Photo'] }
+    { id: 'drole', label: 'L’humour', univers: ['Humour', 'Jeux', 'Jeux vidéo'], cats: [] },
+    { id: 'confort', label: 'Le confort', univers: ['Cocooning', 'Bien-être', 'Sport & bien-être'], cats: ['Bougies & parfums', 'Beauté & soin'] },
+    { id: 'beau', label: 'Les belles choses', univers: ['Design', 'Mode', 'Paris'], cats: ['Déco & maison', 'Art de la table', 'Mode & accessoires'] },
+    { id: 'curieux', label: 'La curiosité', univers: ['Curiosité', 'Lecture', 'Astro', 'Voyage', 'Montagne'], cats: ['Livres', 'Expériences & ateliers'] },
+    { id: 'gourmand', label: 'La gourmandise', univers: ['Gourmand', 'Café & thé'], cats: ['Gastronomie'] },
+    { id: 'manuel', label: 'Le fait main', univers: ['Créatif', 'Nature', 'Photo'], cats: ['Expériences & ateliers', 'Art de la table'] }
   ];
 
   var QUESTIONS = [
@@ -168,7 +170,7 @@
       scene: { fond: '#E6F1EB', perso: 'croix', couleur: 'vert', bulle: '« Dernière ligne droite. Là, je cerne le personnage. »' }
     },
     {
-      cle: 'format', titre: 'Plutôt un objet ou un moment ?', sousTitre: 'Les ateliers se vivent à Paris, chez des artisans.',
+      cle: 'format', titre: 'Plutôt un objet ou un moment ?', sousTitre: 'Les ateliers se vivent sur place, chez des artisans de Martinique.',
       type: 'cartes', resume: function (v) { return v === 'moment' ? 'Un moment à vivre' : v === 'objet' ? 'Un objet à garder' : ''; },
       options: [
         { valeur: 'objet', label: 'Un objet à garder', perso: 'carre', couleur: 'bleu' },
@@ -187,7 +189,7 @@
     return ({ Femme: 'pour elle', Homme: 'pour lui', Couple: 'pour eux deux', Famille: 'pour toute la famille', Ado: 'pour votre ado', Enfant: 'pour un enfant', 'Bébé': 'pour bébé', 'Collègue': 'pour votre collègue', 'Secret Santa': 'pour le Secret Santa' })[v] || 'à offrir';
   }
   var ZONES = {
-    paris: { label: 'À Paris', court: 'Paris' },
+    martinique: { label: 'En Martinique', court: 'Martinique' },
     'en-ligne': { label: 'En ligne', court: 'En ligne' }
   };
 
@@ -280,6 +282,33 @@
     return { criteres: crit, score: Math.min(score, 99), nbPassions: nbPassions };
   }
 
+  // Boutiques de Martinique : pas encore de produits ni de prix relevés,
+  // on rapproche donc les réponses des colonnes « Pour qui » et « Catégories quiz ».
+  // Le budget et l'occasion ne peuvent pas encore filtrer.
+  function catsVoulues(r) {
+    var cats = [];
+    (r.passions || []).forEach(function (id) { var p = trouver(PASSIONS, id); if (p) cats = cats.concat(p.cats); });
+    var k = trouver(CARACTERES, r.caractere);
+    return { passions: cats, caractere: k ? k.cats : [] };
+  }
+  function evaluerBoutique(b, r) {
+    var voulu = catsVoulues(r);
+    var communs = b.categories.filter(function (c) { return voulu.passions.indexOf(c) !== -1; });
+    var crit = {
+      qui: !r.qui || b.pourQui.indexOf(r.qui) !== -1 || b.pourQui.indexOf('Tout le monde') !== -1,
+      univers: !voulu.passions.length || communs.length > 0,
+      caractere: !voulu.caractere.length || croise(b.categories, voulu.caractere),
+      format: r.format !== 'moment' || b.categories.indexOf('Expériences & ateliers') !== -1
+    };
+    var poids = { qui: 40, univers: 34, caractere: 14, format: 12 };
+    var total = 0, obtenu = 0;
+    Object.keys(poids).forEach(function (k) { total += poids[k]; if (crit[k]) obtenu += poids[k]; });
+    var score = Math.round(obtenu / total * 92 + Math.min(communs.length, 2) * 4);
+    // Une boutique qui cite précisément la personne passe devant « Tout le monde ».
+    if (r.qui && b.pourQui.indexOf(r.qui) !== -1) score += 2;
+    return { criteres: crit, score: Math.min(score, 99), categories: communs };
+  }
+
   /* ---------- Affichage ---------- */
   function echapper(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (ch) {
@@ -292,15 +321,8 @@
     if (typeof c.prix === 'number') return (c.prix % 1 ? fmtCentimes : fmtEntier).format(c.prix);
     return '<small>Budget :</small> ' + echapper(c.budget);
   }
-  function badgeLieu(c, catalogue, zone) {
-    var b = catalogue.boutiques[c.boutique];
-    var arr = b && b.arrondissement ? b.arrondissement.split(' ')[0] : '';
-    var aParis = c.zones.indexOf('paris') !== -1, enLigne = c.zones.indexOf('en-ligne') !== -1;
-    if (zone === 'en-ligne' && enLigne) return '<span class="pastille pastille--bleu">Livré chez vous</span>';
-    if (aParis) {
-      var t = c.typeBoutique.indexOf('Ateliers') !== -1 ? 'Atelier à Paris' : 'Paris ' + (arr && /\d/.test(arr) ? arr : '');
-      return '<span class="pastille pastille--vert">' + echapper(t.trim()) + '</span>';
-    }
+  // Les idées du catalogue sont toutes à commander en ligne.
+  function badgeLieu() {
     return '<span class="pastille pastille--bleu">En ligne</span>';
   }
   var FLECHE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -317,6 +339,39 @@
       '<h3>' + echapper(c.nom) + '</h3>' +
       '<div class="cadeau__bas"><span class="prix">' + prix(c) + '</span>' +
       '<a class="btn btn--petit" ' + attributsLien(c) + '>Voir le cadeau<span class="sr-only"> ' + echapper(c.nom) + ' chez ' + echapper(c.boutique) + ' (nouvel onglet)</span></a></div>' +
+      '</article>';
+  }
+
+  /* ---------- Boutiques de Martinique ---------- */
+  var EVIN = 'L’abus d’alcool est dangereux pour la santé, à consommer avec modération.';
+  var LIBELLE_LIEN = { site: 'Voir la boutique', instagram: 'Voir sur Instagram', facebook: 'Voir sur Facebook' };
+  // Lien principal d'une boutique : site, Instagram ou Facebook ; à défaut, son téléphone.
+  function lienBoutique(b, classe) {
+    if (b.lien) {
+      return '<a class="' + classe + '" href="' + echapper(b.lien) + '" target="_blank" rel="noopener">' + LIBELLE_LIEN[b.lienType] +
+        '<span class="sr-only"> ' + echapper(b.nom) + ' (nouvel onglet)</span></a>';
+    }
+    if (b.telephone) {
+      return '<a class="' + classe + '" href="tel:' + echapper(b.telephone.replace(/\s/g, '')) + '">Appeler<span class="sr-only"> ' + echapper(b.nom) + ', ' + echapper(b.telephone) + '</span></a>';
+    }
+    return '';
+  }
+  function carteBoutique(b, opts) {
+    opts = opts || {};
+    var cat = (opts.categories && opts.categories[0]) || b.categories[0];
+    var p = picto(cat);
+    var score = opts.score != null ? '<span class="pastille pastille--blanc cadeau__score">' + opts.score + ' % ' + echapper(opts.pour || '') + '</span>' : '';
+    var raisons = (opts.raisons || []).map(function (x) { return '<span class="pastille pastille--jaune">' + echapper(x) + '</span>'; }).join('');
+    return '<article class="cadeau cadeau--boutique">' +
+      '<div class="cadeau__visuel" style="background:' + p.fond + '" aria-hidden="true">' + p.svg + score + '</div>' +
+      '<div class="cadeau__meta"><span>' + echapper(b.categories.join(' · ')) + '</span><span class="pastille pastille--vert">' + echapper(b.commune) + '</span></div>' +
+      (raisons ? '<div class="vedette__raisons" style="padding:0 4px">' + raisons + '</div>' : '') +
+      '<h3>' + echapper(b.nom) + '</h3>' +
+      '<p class="cadeau__texte">' + echapper(b.produits) + '</p>' +
+      (b.infoPratique ? '<p class="cadeau__info">' + echapper(b.infoPratique) + '</p>' : '') +
+      (b.alcool ? '<p class="cadeau__info">' + EVIN + '</p>' : '') +
+      '<div class="cadeau__bas">' + (b.venteEnLigne ? '<span class="pastille pastille--bleu">Vend aussi en ligne</span>' : '<span></span>') +
+      lienBoutique(b, 'btn btn--petit') + '</div>' +
       '</article>';
   }
 
@@ -338,8 +393,9 @@
     COULEURS: COULEURS, QUESTIONS: QUESTIONS, PASSIONS: PASSIONS, CARACTERES: CARACTERES, ZONES: ZONES,
     perso: perso, remplirPersos: remplirPersos, picto: picto,
     reponses: reponses, ecrireStockage: ecrireStockage, versUrl: versUrl,
-    chargerCatalogue: chargerCatalogue, evaluer: evaluer, estMoment: estMoment,
+    chargerCatalogue: chargerCatalogue, evaluer: evaluer, estMoment: estMoment, evaluerBoutique: evaluerBoutique,
     carteCadeau: carteCadeau, badgeLieu: badgeLieu, prix: prix, attributsLien: attributsLien,
+    carteBoutique: carteBoutique, lienBoutique: lienBoutique, EVIN: EVIN,
     echapper: echapper, pourQui: pourQui, libelleQui: libelleQui, joursAvantNoel: joursAvantNoel, FLECHE: FLECHE
   };
 })();

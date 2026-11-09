@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tadaaa · Le cadeau qui fait tadaaa</title>
-<meta name="description" content="Six questions sur la personne, et Tadaaa vous montre les cadeaux qui lui ressemblent, dans les boutiques parisiennes ou en ligne.">
+<meta name="description" content="Six questions sur la personne, et Tadaaa vous montre les cadeaux qui lui ressemblent, dans les boutiques et chez les créateurs de Martinique, ou en ligne.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z' fill='%23FCCA59'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
     <a class="logo" href="index.html"><img src="assets/img/logo.svg" alt="Tadaaa, retour à l’accueil" width="190" height="30"></a>
     <nav class="entete__nav" aria-label="Navigation principale">
       <a href="#comment">Comment ça marche</a>
-      <a href="#idees">Idées du moment</a>
-      <a href="#ou">À Paris ou en ligne</a>
+      <a href="#idees">Boutiques</a>
+      <a href="#ou">En Martinique ou en ligne</a>
     </nav>
     <div class="entete__actions">
       <a class="btn btn--petit" href="zone.html">Trouver un cadeau</a>
@@ -33,18 +33,18 @@
       <div class="hero__texte">
         <span class="pastille pastille--jaune hero__compteur" id="compteur-noel">Noël approche</span>
         <h1>Le cadeau qui fait <span class="souligne">tadaaa<svg viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14C30 2 50 22 76 12S120 2 146 14 186 20 196 8" fill="none" stroke="#F5793B" stroke-width="7" stroke-linecap="round"/></svg></span></h1>
-        <p class="hero__intro">Répondez à 6 questions sur la personne. On cherche parmi 200 idées, dans des boutiques parisiennes et en ligne, et on vous montre celles qui lui ressemblent.</p>
+        <p class="hero__intro">Répondez à 6 questions sur la personne. On cherche parmi les boutiques et les créateurs de Martinique, ou parmi 190 idées en ligne, et on vous montre ce qui lui ressemble.</p>
 
         <form class="choix-zone-rapide" action="quiz.html" method="get">
           <fieldset>
             <legend>Où voulez-vous l’acheter&nbsp;?</legend>
             <label class="tuile-radio">
-              <input type="radio" name="zone" value="paris" checked>
-              <span><strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5793B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>À Paris</strong><small>En boutique ou en atelier, pour voir le cadeau avant.</small></span>
+              <input type="radio" name="zone" value="martinique" checked>
+              <span><strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5793B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>En Martinique</strong><small>En boutique ou chez un créateur, pour voir le cadeau avant.</small></span>
             </label>
             <label class="tuile-radio">
               <input type="radio" name="zone" value="en-ligne">
-              <span><strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#99B7F5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg>En ligne</strong><small>Livré chez vous ou chez la personne.</small></span>
+              <span><strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#99B7F5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg>En ligne</strong><small>Commandé sur le site de la boutique et livré.</small></span>
             </label>
           </fieldset>
           <button class="btn btn--plein btn--grand" type="submit">Lancer le quiz <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
@@ -59,8 +59,8 @@
         <span data-perso="coeur" data-couleur="orange" class="flotte flotte--2" style="left:4%;top:64%;width:28%"></span>
         <span data-perso="croix" data-couleur="vert" class="flotte" style="right:4%;top:62%;width:30%"></span>
         <span class="etiquette" style="left:-2%;top:30%;background:#fff;transform:rotate(-6deg)">94&nbsp;% pour mamie</span>
-        <span class="etiquette" style="right:-3%;top:26%;background:#267F53;color:#fff;transform:rotate(5deg)">Paris 3e · à 2 pas</span>
-        <span class="etiquette" style="left:36%;bottom:4%;background:#99B7F5;transform:rotate(-3deg)">ou livré chez elle</span>
+        <span class="etiquette" style="right:-3%;top:26%;background:#267F53;color:#fff;transform:rotate(5deg)">Fait en Martinique</span>
+        <span class="etiquette" style="left:36%;bottom:4%;background:#99B7F5;transform:rotate(-3deg)">ou commandé en ligne</span>
       </div>
     </div>
   </section>
@@ -74,8 +74,8 @@
       <div class="etapes">
         <article class="etape">
           <div class="etape__haut"><span class="etape__num" style="background:#FFF6DF">1</span><span data-perso="soleil" data-couleur="jaune"></span></div>
-          <h3>Paris ou en ligne</h3>
-          <p>Vous choisissez&nbsp;: une boutique parisienne pour voir le cadeau, ou une livraison chez vous ou chez la personne.</p>
+          <h3>Martinique ou en ligne</h3>
+          <p>Vous choisissez&nbsp;: une boutique ou un créateur de l’île pour voir le cadeau, ou une idée à commander en ligne.</p>
         </article>
         <article class="etape">
           <div class="etape__haut"><span class="etape__num" style="background:#EEF3FE">2</span><span data-perso="trefle" data-couleur="bleu"></span></div>
@@ -85,7 +85,7 @@
         <article class="etape">
           <div class="etape__haut"><span class="etape__num" style="background:#FDEDF4">3</span><span data-perso="fleur" data-couleur="rose"></span></div>
           <h3>Vous achetez chez la boutique</h3>
-          <p>Le bouton «&nbsp;Voir le cadeau&nbsp;» vous emmène sur sa page. Le prix reste le même.</p>
+          <p>Le bouton vous emmène sur la page de la boutique ou du cadeau. Le prix reste le même.</p>
         </article>
       </div>
     </div>
@@ -118,32 +118,32 @@
   <section class="section" id="idees">
     <div class="conteneur">
       <div class="section__tete">
-        <h2>Idées du moment</h2>
+        <h2>À découvrir en Martinique</h2>
         <a class="lien-souligne" href="zone.html">Trouver la bonne idée en 6 questions</a>
       </div>
-      <div class="idees" id="idees-grille"><p class="chargement">Chargement des idées…</p></div>
+      <div class="idees" id="idees-grille"><p class="chargement">Chargement des boutiques…</p></div>
     </div>
   </section>
 
   <section class="bandeau-zones" id="ou">
     <div class="conteneur">
       <div class="section__tete">
-        <h2>Près de chez vous,<br>ou livré chez elle</h2>
+        <h2>Sur l’île,<br>ou commandé en ligne</h2>
         <p>Vous choisissez avant le quiz, et vous pouvez changer à tout moment dans les résultats.</p>
       </div>
       <div class="zones-cartes">
         <article class="zone-carte">
           <span class="zone-carte__icone" style="background:#FEEEE5"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5793B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
-          <h3>À Paris</h3>
-          <p>Des boutiques et des ateliers d’artisans dans Paris. On vous indique l’arrondissement de chaque idée.</p>
-          <ul id="liste-boutiques" aria-label="Boutiques de la sélection"></ul>
-          <a class="btn btn--petit" href="quiz.html?zone=paris">Chercher à Paris</a>
+          <h3>En Martinique</h3>
+          <p>Des boutiques, des créateurs et des ateliers, de Fort-de-France aux Trois-Îlets. On vous indique la commune de chaque adresse.</p>
+          <ul id="liste-boutiques" aria-label="Communes des boutiques"></ul>
+          <a class="btn btn--petit" href="quiz.html?zone=martinique">Chercher en Martinique</a>
         </article>
         <article class="zone-carte">
           <span class="zone-carte__icone" style="background:#EEF3FE"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F55A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg></span>
           <h3>En ligne</h3>
-          <p>Les mêmes boutiques parisiennes sur leur site, et quelques idées en plus sur Amazon. Livré chez vous ou directement chez la personne.</p>
-          <ul><li class="pastille">Livraison à domicile</li><li class="pastille">Envoi au destinataire</li></ul>
+          <p>Des idées sur le site de boutiques parisiennes et sur Amazon, et les boutiques de l’île qui vendent en ligne. Vérifiez la livraison vers la Martinique.</p>
+          <ul><li class="pastille">190 idées</li><li class="pastille">Livraison à domicile</li></ul>
           <a class="btn btn--petit" href="quiz.html?zone=en-ligne">Chercher en ligne</a>
         </article>
       </div>
@@ -158,8 +158,8 @@
       <p class="pied__mention"><strong>Certains liens sont affiliés.</strong> Si vous achetez après avoir cliqué sur «&nbsp;Voir le cadeau&nbsp;», Tadaaa peut recevoir une commission de la boutique. Le prix reste le même pour vous.</p>
     </div>
     <nav class="pied__liens" aria-label="Pied de page">
-      <div><h2>Le site</h2><ul><li><a href="zone.html">Lancer le quiz</a></li><li><a href="index.html#idees">Idées du moment</a></li><li><a href="index.html#comment">Comment ça marche</a></li></ul></div>
-      <div><h2>Acheter</h2><ul><li><a href="quiz.html?zone=paris">À Paris</a></li><li><a href="quiz.html?zone=en-ligne">En ligne</a></li></ul></div>
+      <div><h2>Le site</h2><ul><li><a href="zone.html">Lancer le quiz</a></li><li><a href="index.html#idees">Boutiques à découvrir</a></li><li><a href="index.html#comment">Comment ça marche</a></li></ul></div>
+      <div><h2>Acheter</h2><ul><li><a href="quiz.html?zone=martinique">En Martinique</a></li><li><a href="quiz.html?zone=en-ligne">En ligne</a></li></ul></div>
     </nav>
   </div>
   <div class="conteneur pied__bas">© <span data-annee>2026</span> Tadaaa · Prix relevés en novembre 2026, à vérifier sur le site de chaque boutique.</div>

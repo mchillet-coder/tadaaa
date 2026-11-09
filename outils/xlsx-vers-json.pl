@@ -1,13 +1,19 @@
 #!/usr/bin/perl
-# Convertit le catalogue Excel Tadaaa en data/catalogue.json (+ data/catalogue.js).
+# Convertit les fichiers Excel Tadaaa en data/catalogue.json (+ data/catalogue.js).
 #
 # Usage (depuis le dossier site/) :
-#   perl outils/xlsx-vers-json.pl ../Tadaaa-catalogue-Paris-200-cadeaux.xlsx
+#   perl outils/xlsx-vers-json.pl ../Tadaaa-catalogue-Paris-200-cadeaux.xlsx ../Tadaaa-boutiques-Martinique.xlsx
+#
+# Le second fichier est facultatif : sans lui, le script cherche
+# « Tadaaa-boutiques-Martinique.xlsx » dans le même dossier que le catalogue.
 #
 # Aucun module à installer : Perl et unzip sont fournis avec macOS.
-# Lit les onglets « Catalogue » et « Boutiques Paris ». Les colonnes calculées
-# (Budget, Lien suivi) sont lues telles qu'enregistrées par Excel/LibreOffice :
-# pensez à enregistrer le fichier après avoir changé l'onglet Réglages.
+# - Catalogue : onglets « Catalogue » et « Boutiques Paris » (idées à commander en ligne).
+#   Les colonnes calculées (Budget, Lien suivi) sont lues telles qu'enregistrées
+#   par Excel : pensez à enregistrer le fichier après avoir changé l'onglet Réglages.
+# - Fiche Martinique : onglet « Boutiques » (boutiques et créateurs sur l'île).
+#   Seules les colonnes utiles aux visiteurs sont reprises : contacts, statut de
+#   démarchage, sources et argumentaire restent dans l'Excel.
 use strict;
 use warnings;
 use utf8;
@@ -16,11 +22,15 @@ use File::Basename qw(dirname);
 use File::Spec;
 use JSON::PP;
 
-my $xlsx = shift or die "Usage : perl outils/xlsx-vers-json.pl chemin/vers/catalogue.xlsx\n";
+binmode STDOUT, ':encoding(UTF-8)';
+binmode STDERR, ':encoding(UTF-8)';
+
+my ($xlsx, $xlsxMq) = @ARGV;
+$xlsx or die "Usage : perl outils/xlsx-vers-json.pl catalogue.xlsx [boutiques-Martinique.xlsx]\n";
 -f $xlsx or die "Fichier introuvable : $xlsx\n";
+$xlsxMq //= File::Spec->catfile(dirname($xlsx), 'Tadaaa-boutiques-Martinique.xlsx');
+-f $xlsxMq or die "Fiche boutiques Martinique introuvable : $xlsxMq\n";
 my $root = File::Spec->rel2abs(File::Spec->catdir(dirname(__FILE__), '..'));
-my $tmp  = tempdir(CLEANUP => 1);
-system('unzip', '-q', '-o', $xlsx, '-d', $tmp) == 0 or die "unzip a échoué\n";
 
 sub slurp { local $/; open my $f, '<:encoding(UTF-8)', $_[0] or die "$_[0] : $!\n"; my $s = <$f>; close $f; $s }
 sub unesc {
@@ -31,35 +41,38 @@ sub unesc {
 }
 sub trim { my $s = shift // ''; $s =~ s/^\s+|\s+$//g; $s }
 
-# --- chaînes partagées
-my @ss;
-if (-f "$tmp/xl/sharedStrings.xml") {
-  my $sx = slurp("$tmp/xl/sharedStrings.xml");
-  while ($sx =~ m{<si>(.*?)</si>}gs) {
-    my $si = $1; my $t = '';
-    $si =~ s{<rPh\b.*?</rPh>}{}gs;
-    while ($si =~ m{<t(?:\s[^>]*)?>(.*?)</t>}gs) { $t .= $1 }
-    push @ss, unesc($t);
+# --- ouverture d'un classeur : chaînes partagées + onglets (nom -> fichier)
+my (@ss, %sheet);
+sub ouvrir {
+  my $file = shift;
+  my $tmp = tempdir(CLEANUP => 1);
+  system('unzip', '-q', '-o', $file, '-d', $tmp) == 0 or die "unzip a échoué sur $file\n";
+  @ss = (); %sheet = ();
+  if (-f "$tmp/xl/sharedStrings.xml") {
+    my $sx = slurp("$tmp/xl/sharedStrings.xml");
+    while ($sx =~ m{<si>(.*?)</si>}gs) {
+      my $si = $1; my $t = '';
+      $si =~ s{<rPh\b.*?</rPh>}{}gs;
+      while ($si =~ m{<t(?:\s[^>]*)?>(.*?)</t>}gs) { $t .= $1 }
+      push @ss, unesc($t);
+    }
   }
-}
-
-# --- onglets : nom -> fichier
-my %rel;
-my $rels = slurp("$tmp/xl/_rels/workbook.xml.rels");
-while ($rels =~ m{<Relationship\b([^>]*)/?>}g) {
-  my $a = $1; my ($id) = $a =~ /\bId="([^"]+)"/; my ($t) = $a =~ /\bTarget="([^"]+)"/;
-  $t =~ s{^/?xl/}{}; $rel{$id} = $t;
-}
-my %sheet;
-my $wb = slurp("$tmp/xl/workbook.xml");
-while ($wb =~ m{<sheet\b([^>]*)/>}g) {
-  my $a = $1; my ($n) = $a =~ /\bname="([^"]+)"/; my ($id) = $a =~ /\br:id="([^"]+)"/;
-  $sheet{unesc($n)} = "$tmp/xl/$rel{$id}";
+  my %rel;
+  my $rels = slurp("$tmp/xl/_rels/workbook.xml.rels");
+  while ($rels =~ m{<Relationship\b([^>]*)/?>}g) {
+    my $a = $1; my ($id) = $a =~ /\bId="([^"]+)"/; my ($t) = $a =~ /\bTarget="([^"]+)"/;
+    $t =~ s{^/?xl/}{}; $rel{$id} = $t;
+  }
+  my $wb = slurp("$tmp/xl/workbook.xml");
+  while ($wb =~ m{<sheet\b([^>]*)/>}g) {
+    my $a = $1; my ($n) = $a =~ /\bname="([^"]+)"/; my ($id) = $a =~ /\br:id="([^"]+)"/;
+    $sheet{unesc($n)} = "$tmp/xl/$rel{$id}";
+  }
 }
 
 sub col2n { my $n = 0; $n = $n * 26 + (ord($_) - 64) for split //, shift; $n - 1 }
 
-# Renvoie la liste des lignes (tableaux de cellules) d'un onglet.
+# Renvoie la liste des lignes (tableaux de cellules) d'un onglet du classeur ouvert.
 sub read_sheet {
   my $name = shift;
   my $file = $sheet{$name} or die "Onglet « $name » introuvable\n";
@@ -87,8 +100,13 @@ sub as_records {
   return map { my $r = $_; +{ map { $h[$_] ne '' ? ($h[$_] => $r->[$_]) : () } 0 .. $#h } } @rows;
 }
 sub list { [ grep { $_ ne '' } map { trim($_) } split /,/, (shift // '') ] }
+sub url { my $u = trim(shift); return '' if $u eq ''; $u =~ m{^https?://}i ? $u : "https://$u" }
 
-# --- boutiques
+# =========================================================
+# 1. Catalogue : idées à commander en ligne
+# =========================================================
+ouvrir($xlsx);
+
 my %boutiques;
 for my $b (as_records(read_sheet('Boutiques Paris'))) {
   my $nom = $b->{'Boutique'} or next;
@@ -102,7 +120,6 @@ for my $b (as_records(read_sheet('Boutiques Paris'))) {
   };
 }
 
-# --- catalogue
 my @cadeaux;
 for my $c (as_records(read_sheet('Catalogue'))) {
   next unless ($c->{'ID'} // '') =~ /^TDA-/;
@@ -111,8 +128,8 @@ for my $c (as_records(read_sheet('Catalogue'))) {
   my @occasions;
   push @occasions, 'Noël'         if $occ =~ /No[eë]l/i;
   push @occasions, 'Anniversaire' if $occ =~ /anniversaire/i;
-  # Zones : « paris » = boutique ou atelier physique à Paris,
-  #         « en-ligne » = commandable et livré (boutiques parisiennes avec e-shop + enseignes en ligne).
+  # Zones : « paris » = boutique ou atelier physique à Paris (plus proposé sur le site),
+  #         « en-ligne » = commandable et livré (boutiques avec e-shop + enseignes en ligne).
   my @zones;
   push @zones, 'paris'    if $type =~ /parisien/i;
   push @zones, 'en-ligne' if $type =~ /Boutique parisienne|en ligne/i;
@@ -135,12 +152,52 @@ for my $c (as_records(read_sheet('Catalogue'))) {
   };
 }
 
+# =========================================================
+# 2. Fiche Martinique : boutiques et créateurs sur l'île
+# =========================================================
+ouvrir($xlsxMq);
+
+my @martinique;
+for my $b (as_records(read_sheet('Boutiques'))) {
+  my $nom = $b->{'Boutique'} or next;
+  # Lien principal : le site, sinon Instagram, sinon Facebook.
+  my ($lien, $lienType) = ('', '');
+  for (['Site', 'site'], ['Instagram', 'instagram'], ['Facebook', 'facebook']) {
+    my $u = url($b->{$_->[0]});
+    if ($u ne '') { ($lien, $lienType) = ($u, $_->[1]); last }
+  }
+  my $produits = $b->{'Produits phares'} // '';
+  my $notes    = $b->{'Notes'} // '';
+  push @martinique, {
+    nom          => $nom,
+    commune      => $b->{'Commune'} // '',
+    adresse      => $b->{'Adresse'} // '',
+    univers      => $b->{'Univers'} // '',
+    produits     => $produits,
+    categories   => list($b->{'Catégories quiz'}),
+    pourQui      => list($b->{'Pour qui'}),
+    venteEnLigne => (($b->{'Vente en ligne'} // '') =~ /^Oui/i ? JSON::PP::true : JSON::PP::false),
+    lien         => $lien,
+    lienType     => $lienType,
+    telephone    => $b->{'Téléphone'} // '',
+    # Information pratique pour le visiteur seulement (rendez-vous, appeler avant).
+    infoPratique => ($notes =~ /rendez-vous|appeler/i ? $notes : ''),
+    # Loi Évin : afficher le message sanitaire pour les boutiques qui vendent de l'alcool.
+    alcool       => ("$produits $b->{'Univers'}" =~ /rhum|liqueur|\bvins?\b/i ? JSON::PP::true : JSON::PP::false),
+  };
+}
+
+# =========================================================
+# Écriture
+# =========================================================
 my $data = {
-  source    => (File::Spec->splitpath($xlsx))[2],
-  genereLe  => do { my @t = localtime; sprintf '%04d-%02d-%02d', $t[5] + 1900, $t[4] + 1, $t[3] },
-  budgets   => ['Moins de 25 €', '25–50 €', '50–100 €', '100–200 €', '200 € et plus'],
-  boutiques => \%boutiques,
-  cadeaux   => \@cadeaux,
+  source             => (File::Spec->splitpath($xlsx))[2],
+  sourceMartinique   => (File::Spec->splitpath($xlsxMq))[2],
+  genereLe           => do { my @t = localtime; sprintf '%04d-%02d-%02d', $t[5] + 1900, $t[4] + 1, $t[3] },
+  budgets            => ['Moins de 25 €', '25–50 €', '50–100 €', '100–200 €', '200 € et plus'],
+  boutiques          => \%boutiques,
+  boutiquesMartinique => \@martinique,
+  cadeaux            => \@cadeaux,
 };
 my $json = JSON::PP->new->canonical->pretty->encode($data);
 
@@ -148,7 +205,9 @@ mkdir "$root/data";
 for (['catalogue.json', $json], ['catalogue.js', "// Fichier généré par outils/xlsx-vers-json.pl : ne pas modifier à la main.\n// Copie de catalogue.json pour ouvrir le site sans serveur (file://).\nwindow.TADAAA_CATALOGUE = $json;\n"]) {
   open my $f, ">:encoding(UTF-8)", "$root/data/$_->[0]" or die $!; print $f $_->[1]; close $f;
 }
-binmode STDOUT, ':encoding(UTF-8)';
-printf "%d cadeaux et %d boutiques écrits dans data/catalogue.json\n", scalar @cadeaux, scalar keys %boutiques;
+my $enLigne = grep { grep { $_ eq 'en-ligne' } @{ $_->{zones} } } @cadeaux;
+printf "%d boutiques en Martinique et %d idées en ligne écrites dans data/catalogue.json\n", scalar @martinique, $enLigne;
+my $sansLien = join ', ', map { $_->{nom} } grep { !$_->{lien} } @martinique;
+print "À compléter : pas de site ni de réseau social pour $sansLien (seul le téléphone sera affiché).\n" if $sansLien;
 my $tag = grep { $_->{lienSuivi} =~ /votretag-21/ } @cadeaux;
 print "Attention : $tag liens Amazon utilisent encore le tag d'exemple « votretag-21 » (onglet Réglages).\n" if $tag;

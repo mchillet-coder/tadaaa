@@ -1,4 +1,4 @@
-/* Tadaaa · accueil : compte à rebours, idées du moment, liste des boutiques */
+/* Tadaaa · accueil : compte à rebours, boutiques à découvrir, communes de Martinique */
 (function () {
   'use strict';
   var T = window.Tadaaa;
@@ -12,22 +12,24 @@
     T.ecrireStockage({});
 
     T.chargerCatalogue().then(function (cat) {
-      // Idées du moment : 4 cadeaux avec un prix connu, de catégories différentes, tirés au hasard.
-      var avecPrix = cat.cadeaux.filter(function (c) { return typeof c.prix === 'number' && c.prix < 100; });
-      melanger(avecPrix);
+      // À découvrir : 4 boutiques de Martinique tirées au hasard, de catégories différentes.
+      var boutiques = (cat.boutiquesMartinique || []).slice();
+      melanger(boutiques);
       var vues = {}, choix = [];
-      avecPrix.forEach(function (c) {
-        if (choix.length < 4 && !vues[c.categorie]) { vues[c.categorie] = true; choix.push(c); }
+      boutiques.forEach(function (b) {
+        if (choix.length < 4 && !vues[b.categories[0]]) { vues[b.categories[0]] = true; choix.push(b); }
       });
-      document.getElementById('idees-grille').innerHTML = choix.map(function (c) { return T.carteCadeau(c, cat); }).join('');
+      document.getElementById('idees-grille').innerHTML = choix.map(function (b) { return T.carteBoutique(b); }).join('');
 
       var liste = document.getElementById('liste-boutiques');
       if (liste) {
-        liste.innerHTML = Object.keys(cat.boutiques).sort(function (a, b) { return a.localeCompare(b, 'fr'); })
+        liste.innerHTML = (cat.boutiquesMartinique || []).map(function (b) { return b.commune; })
+          .filter(function (c, i, t) { return t.indexOf(c) === i; })
+          .sort(function (a, b) { return a.localeCompare(b, 'fr'); })
           .map(function (n) { return '<li class="pastille">' + T.echapper(n) + '</li>'; }).join('');
       }
     }).catch(function () {
-      document.getElementById('idees-grille').innerHTML = '<p class="chargement">Les idées n’ont pas pu être chargées.</p>';
+      document.getElementById('idees-grille').innerHTML = '<p class="chargement">Les boutiques n’ont pas pu être chargées.</p>';
     });
   });
 
