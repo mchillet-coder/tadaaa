@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tadaaa · Le quiz</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z' fill='%23FCCA59'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="entete entete--parcours">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="index.html"><img src="assets/img/logo.svg" alt="Tadaaa, retour à l’accueil" width="190" height="30"></a>
+    <div class="progression" style="--etapes:6">
+      <div class="progression__pistes" id="pistes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="progression__texte" id="progression-texte" aria-live="polite">Question 1 sur 6</span>
+    </div>
+    <a class="lien-souligne" href="index.html">Quitter</a>
+  </div>
+</header>
+
+<main class="conteneur parcours">
+  <div class="scene" id="scene" aria-hidden="true">
+    <svg viewBox="0 0 560 600" preserveAspectRatio="xMidYMid slice"><path id="scene-ruban" d="M-30 470C70 400 150 540 250 460S420 340 600 420" fill="none" stroke="#FCCA59" stroke-width="40" stroke-linecap="round"/></svg>
+    <span data-perso="eclat" data-couleur="orange" class="flotte flotte--2" style="left:7%;top:8%;width:16%"></span>
+    <span data-perso="fleur" data-couleur="rose" class="flotte flotte--3" style="right:8%;top:9%;width:16%"></span>
+    <span data-perso="croix" data-couleur="vert" class="flotte" style="right:10%;top:52%;width:12%"></span>
+    <span id="scene-perso" class="flotte scene__heros" style="left:27%;top:24%;width:46%"></span>
+    <p class="bulle" id="scene-bulle"></p>
+  </div>
+
+  <section class="panneau" id="panneau" aria-labelledby="question-titre">
+    <div class="panneau__resume" id="resume"></div>
+    <h1 id="question-titre" tabindex="-1"></h1>
+    <p class="panneau__sous-titre" id="question-sous-titre"></p>
+    <div id="question-choix"></div>
+    <div class="panneau__pied">
+      <button type="button" class="lien-souligne" id="btn-precedent">Question précédente</button>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <button type="button" class="lien-souligne" id="btn-passer" hidden></button>
+        <button type="button" class="btn btn--grand" id="btn-suivant">Continuer <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pied pied--compact">
+  <div class="conteneur pied__haut">
+    <div class="pied__marque">
+      <img src="assets/img/logo-blanc.svg" alt="Tadaaa" width="180" height="28">
+      <p class="pied__mention"><strong>Certains liens sont affiliés.</strong> Si vous achetez après avoir cliqué sur «&nbsp;Voir le cadeau&nbsp;», Tadaaa peut recevoir une commission de la boutique. Le prix reste le même pour vous.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/commun.js"></script>
+<script src="assets/js/quiz.js"></script>
+</body>
+</html>

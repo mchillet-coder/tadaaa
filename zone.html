@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tadaaa · Où voulez-vous l’acheter ?</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z' fill='%23FCCA59'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="entete entete--parcours">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="index.html"><img src="assets/img/logo.svg" alt="Tadaaa, retour à l’accueil" width="190" height="30"></a>
+    <div class="progression" style="--etapes:6">
+      <div class="progression__pistes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="progression__texte">Avant de commencer</span>
+    </div>
+    <a class="lien-souligne" href="index.html">Quitter</a>
+  </div>
+</header>
+
+<main class="conteneur parcours">
+  <div class="scene" style="background:#EEF3FE" aria-hidden="true">
+    <svg viewBox="0 0 560 620" preserveAspectRatio="xMidYMid slice">
+      <path d="M-20 520C120 470 200 560 340 512S520 440 600 470" fill="none" stroke="#FFFFFF" stroke-width="26" stroke-linecap="round"/>
+      <path d="M380 640C360 560 420 500 520 420" fill="none" stroke="#FFFFFF" stroke-width="26" stroke-linecap="round"/>
+      <path d="M-30 120C60 60 120 200 200 140S320 30 380 80" fill="none" stroke="#99B7F5" stroke-width="18" stroke-linecap="round" opacity="0.5"/>
+      <path d="M86 404c-14 0-24 10-24 24 0 18 24 42 24 42s24-24 24-42c0-14-10-24-24-24z" fill="#FCCA59"/><circle cx="86" cy="428" r="8" fill="#FFFFFF"/>
+      <path d="M486 360c-14 0-24 10-24 24 0 18 24 42 24 42s24-24 24-42c0-14-10-24-24-24z" fill="#F296BD"/><circle cx="486" cy="384" r="8" fill="#FFFFFF"/>
+      <path d="M440 92c-28 0-48 20-48 48 0 36 48 84 48 84s48-48 48-84c0-28-20-48-48-48z" fill="#F5793B"/><circle cx="440" cy="140" r="17" fill="#FFFFFF"/>
+      <ellipse cx="280" cy="458" rx="120" ry="12" fill="#99B7F5" opacity="0.45"/>
+    </svg>
+    <span data-perso="fantome" data-couleur="vert" class="flotte scene__heros" style="left:28%;top:30%;width:44%"></span>
+    <p class="bulle">«&nbsp;Je regarde ce qu’il y a dans les boutiques de Paris… ou en ligne, comme vous voulez.&nbsp;»</p>
+  </div>
+
+  <form class="panneau" id="form-zone" action="quiz.html" method="get">
+    <h1>Où voulez-vous l’acheter&nbsp;?</h1>
+    <p class="panneau__sous-titre">Vous pourrez changer ce choix dans les résultats.</p>
+
+    <div class="options-zone" role="radiogroup" aria-label="Zone d’achat">
+      <label class="option-zone">
+        <input type="radio" name="zone" value="paris" checked>
+        <span class="option-zone__boite">
+          <span class="radio-rond"></span>
+          <span>
+            <span class="option-zone__titre">À Paris</span>
+            <span class="option-zone__texte">Pour voir le cadeau avant de l’acheter, le récupérer vite ou offrir un atelier chez un artisan.</span>
+            <span class="option-zone__chips"><span class="pastille">13 boutiques</span><span class="pastille">10 ateliers</span><span class="pastille">Marais, Saint-Germain, Bastille…</span></span>
+          </span>
+        </span>
+      </label>
+      <label class="option-zone">
+        <input type="radio" name="zone" value="en-ligne">
+        <span class="option-zone__boite">
+          <span class="radio-rond"></span>
+          <span>
+            <span class="option-zone__titre">En ligne</span>
+            <span class="option-zone__texte">Livré chez vous ou directement chez la personne, où qu’elle habite.</span>
+            <span class="option-zone__chips"><span class="pastille">Sites des boutiques</span><span class="pastille">Amazon</span></span>
+          </span>
+        </span>
+      </label>
+    </div>
+
+    <div class="panneau__pied">
+      <a class="lien-souligne" href="index.html">Retour</a>
+      <button class="btn btn--grand" type="submit">Commencer le quiz <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </form>
+</main>
+
+<footer class="pied pied--compact">
+  <div class="conteneur pied__haut">
+    <div class="pied__marque">
+      <img src="assets/img/logo-blanc.svg" alt="Tadaaa" width="180" height="28">
+      <p class="pied__mention"><strong>Certains liens sont affiliés.</strong> Si vous achetez après avoir cliqué sur «&nbsp;Voir le cadeau&nbsp;», Tadaaa peut recevoir une commission de la boutique. Le prix reste le même pour vous.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/commun.js"></script>
+<script>
+  (function () {
+    var T = window.Tadaaa, r = T.reponses(), form = document.getElementById('form-zone');
+    if (r.zone) {
+      var radio = form.querySelector('input[value="' + r.zone + '"]');
+      if (radio) radio.checked = true;
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      r.zone = form.zone.value;
+      T.ecrireStockage(r);
+      // On garde les réponses déjà connues (ex. occasion choisie sur l’accueil).
+      var suite = new URLSearchParams(location.search);
+      suite.set('zone', r.zone);
+      location.href = 'quiz.html?' + suite.toString();
+    });
+  })();
+</script>
+</body>
+</html>

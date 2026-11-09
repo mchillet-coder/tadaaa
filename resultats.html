@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tadaaa · Vos idées cadeaux</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z' fill='%23FCCA59'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="index.html"><img src="assets/img/logo.svg" alt="Tadaaa, retour à l’accueil" width="190" height="30"></a>
+    <div class="entete__actions" style="margin-left:auto">
+      <a class="btn btn--petit btn--contour" href="zone.html">Refaire le quiz</a>
+    </div>
+  </div>
+</header>
+
+<main class="conteneur">
+  <section class="res-hero" aria-labelledby="res-titre">
+    <svg viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 220C80 150 160 260 260 200S420 60 520 120 620 230 640 180" fill="none" stroke="#F296BD" stroke-width="18" stroke-linecap="round" opacity="0.45"/></svg>
+    <div class="res-hero__texte">
+      <h1 id="res-titre">Tadaaa&nbsp;!</h1>
+      <div class="res-hero__chips" id="res-chips"></div>
+    </div>
+    <div class="res-hero__persos" aria-hidden="true">
+      <span data-perso="coeur" data-couleur="orange" class="flotte"></span>
+      <span data-perso="soleil" data-couleur="jaune" class="flotte flotte--2"></span>
+      <span data-perso="trefle" data-couleur="bleu" class="flotte flotte--3"></span>
+    </div>
+  </section>
+
+  <div class="res-corps">
+    <aside class="filtres" aria-label="Affiner les résultats">
+      <form id="filtres" class="filtres__corps">
+        <fieldset id="filtre-zone">
+          <legend>Où acheter</legend>
+          <label class="case"><input type="radio" name="zone" value="paris"> À Paris</label>
+          <label class="case"><input type="radio" name="zone" value="en-ligne"> En ligne</label>
+        </fieldset>
+        <div>
+          <label class="titre" for="filtre-budget">Budget</label>
+          <select id="filtre-budget" name="budget">
+            <option value="">Tous les budgets</option>
+            <option>Moins de 25 €</option>
+            <option>25–50 €</option>
+            <option>50–100 €</option>
+            <option>100–200 €</option>
+            <option>200 € et plus</option>
+          </select>
+        </div>
+        <fieldset>
+          <legend>Type de cadeau</legend>
+          <label class="case"><input type="radio" name="format" value=""> Peu importe</label>
+          <label class="case"><input type="radio" name="format" value="objet"> Un objet à garder</label>
+          <label class="case"><input type="radio" name="format" value="moment"> Un moment à vivre</label>
+        </fieldset>
+        <div>
+          <label class="titre" for="filtre-tri">Trier par</label>
+          <select id="filtre-tri" name="tri">
+            <option value="pertinence">Pertinence</option>
+            <option value="prix-asc">Prix croissant</option>
+            <option value="prix-desc">Prix décroissant</option>
+          </select>
+        </div>
+      </form>
+    </aside>
+
+    <div id="resultats" aria-live="polite">
+      <p class="chargement">On fouille le catalogue…</p>
+    </div>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied__haut">
+    <div class="pied__marque">
+      <img src="assets/img/logo-blanc.svg" alt="Tadaaa" width="180" height="28">
+      <p class="pied__mention"><strong>Certains liens sont affiliés.</strong> Si vous achetez après avoir cliqué sur «&nbsp;Voir le cadeau&nbsp;», Tadaaa peut recevoir une commission de la boutique. Le prix reste le même pour vous.</p>
+    </div>
+    <nav class="pied__liens" aria-label="Pied de page">
+      <div><h2>Le site</h2><ul><li><a href="index.html">Accueil</a></li><li><a href="zone.html">Refaire le quiz</a></li><li><a href="index.html#idees">Idées du moment</a></li></ul></div>
+    </nav>
+  </div>
+  <div class="conteneur pied__bas">© <span data-annee>2026</span> Tadaaa · Prix relevés en novembre 2026, à vérifier sur le site de chaque boutique.</div>
+</footer>
+
+<script src="assets/js/commun.js"></script>
+<script src="assets/js/resultats.js"></script>
+</body>
+</html>
