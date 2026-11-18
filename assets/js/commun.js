@@ -85,7 +85,13 @@
     'High-tech & photo': ['#EEF3FE', '<rect x="16" y="32" width="68" height="48" rx="12" fill="#1A1A1A"/><rect x="28" y="24" width="20" height="12" rx="4" fill="#1A1A1A"/><circle cx="50" cy="56" r="16" fill="#FCCA59"/><circle cx="50" cy="56" r="7" fill="#F5793B"/><circle cx="72" cy="42" r="3" fill="#fff"/>'],
     'Curiosités': ['#E6F1EB', '<circle cx="44" cy="44" r="24" fill="#fff" stroke="#1A1A1A" stroke-width="7"/><path d="M62 62l20 20" stroke="#1A1A1A" stroke-width="10" stroke-linecap="round"/><path d="M44 32l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z" fill="#F296BD"/>'],
     'Livres': ['#EEF3FE', '<path d="M50 28C40 22 26 22 16 26v52c10-4 24-4 34 2z" fill="#fff"/><path d="M50 28c10-6 24-6 34-2v52c-10-4-24-4-34 2z" fill="#99B7F5"/>'],
-    'Cuisine & café': ['#FFF6DF', '<path d="M24 40h46v20a20 20 0 0 1-20 20h-6a20 20 0 0 1-20-20z" fill="#F5793B"/><path d="M70 46h4a10 10 0 0 1 0 20h-6" fill="none" stroke="#F5793B" stroke-width="6"/><path d="M38 18c-4 6 4 10 0 16M52 18c-4 6 4 10 0 16" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>']
+    'Cuisine & café': ['#FFF6DF', '<path d="M24 40h46v20a20 20 0 0 1-20 20h-6a20 20 0 0 1-20-20z" fill="#F5793B"/><path d="M70 46h4a10 10 0 0 1 0 20h-6" fill="none" stroke="#F5793B" stroke-width="6"/><path d="M38 18c-4 6 4 10 0 16M52 18c-4 6 4 10 0 16" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>'],
+    // Pictos des goûts sans catégorie équivalente dans le catalogue
+    'Voyage': ['#EEF3FE', '<rect x="22" y="34" width="56" height="48" rx="10" fill="#F5793B"/><path d="M40 34v-8a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v8" fill="none" stroke="#1A1A1A" stroke-width="5"/><rect x="22" y="52" width="56" height="7" fill="#FCCA59"/><circle cx="34" cy="86" r="4" fill="#1A1A1A"/><circle cx="66" cy="86" r="4" fill="#1A1A1A"/>'],
+    'Paris': ['#FDEDF4', '<path d="M50 10l6 30h-12zM44 40h12l8 26H36zM36 66h28l12 22H62q-12-14-24 0H24z" fill="#1A1A1A"/><rect x="38" y="40" width="24" height="5" rx="2" fill="#F296BD"/><rect x="32" y="64" width="36" height="5" rx="2" fill="#F296BD"/>'],
+    'Musique': ['#FFF6DF', '<path d="M40 70V24l38-8v46" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linejoin="round"/><ellipse cx="30" cy="72" rx="12" ry="9" fill="#F5793B"/><ellipse cx="68" cy="64" rx="12" ry="9" fill="#99B7F5"/>'],
+    'Humour': ['#FEEEE5', '<circle cx="50" cy="52" r="34" fill="#FCCA59"/><path d="M34 44q5-6 10 0M56 44q5-6 10 0" fill="none" stroke="#1A1A1A" stroke-width="4.5" stroke-linecap="round"/><path d="M32 56h36a18 18 0 0 1-36 0z" fill="#1A1A1A"/><ellipse cx="50" cy="68" rx="8" ry="4" fill="#F5793B"/>'],
+    'Amour': ['#FDEDF4', '<path d="M50 86C22 66 10 50 14 32c4-16 26-18 36 0 10-18 32-16 36 0 4 18-8 34-36 54z" fill="#F5793B"/><path d="M30 34q4-6 10-6" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>']
   };
   function picto(categorie) {
     var p = PICTOS[categorie] || PICTOS['Déco & maison'];
@@ -98,33 +104,41 @@
      passions + caractere → « Univers », format → « Catégorie ».
      Pour les boutiques de Martinique (pas encore de produits relevés),
      « cats » relie chaque passion aux « Catégories quiz » de la fiche boutique. */
+  // « picto » : l'icône affichée sur la carte du goût (version mobile du quiz).
   var PASSIONS = [
-    { id: 'design', label: 'Déco & design', univers: ['Design'], cats: ['Déco & maison', 'Art de la table'] },
-    { id: 'creatif', label: 'Créatif', univers: ['Créatif'], cats: ['Expériences & ateliers', 'Déco & maison'] },
-    { id: 'gourmand', label: 'Gourmandise', univers: ['Gourmand', 'Café & thé'], cats: ['Gastronomie'] },
-    { id: 'nature', label: 'Nature & plantes', univers: ['Nature'], cats: ['Beauté & soin', 'Bougies & parfums'] },
-    { id: 'cocooning', label: 'Cocooning', univers: ['Cocooning'], cats: ['Bougies & parfums', 'Déco & maison'] },
-    { id: 'bienetre', label: 'Bien-être', univers: ['Bien-être', 'Sport & bien-être'], cats: ['Beauté & soin', 'Bougies & parfums'] },
-    { id: 'jeux', label: 'Jeux', univers: ['Jeux', 'Jeux vidéo'], cats: ['Jouets enfant'] },
-    { id: 'humour', label: 'Humour', univers: ['Humour'], cats: [] },
-    { id: 'voyage', label: 'Voyage & montagne', univers: ['Voyage', 'Montagne'], cats: ['Livres', 'Mode & accessoires'] },
-    { id: 'paris', label: 'Paris', univers: ['Paris'], cats: [] },
-    { id: 'lecture', label: 'Lecture', univers: ['Lecture'], cats: ['Livres'] },
-    { id: 'curiosite', label: 'Sciences & curiosités', univers: ['Curiosité', 'Astro', 'Animaux'], cats: ['Livres'] },
-    { id: 'mode', label: 'Mode', univers: ['Mode'], cats: ['Mode & accessoires'] },
-    { id: 'tech', label: 'Tech & photo', univers: ['Tech', 'Photo'], cats: [] },
-    { id: 'musique', label: 'Musique', univers: ['Musique'], cats: [] },
-    { id: 'amour', label: 'Amour', univers: ['Amour'], cats: ['Bougies & parfums', 'Mode & accessoires'] },
-    { id: 'eveil', label: 'Éveil des tout-petits', univers: ['Éveil', 'Famille'], cats: ['Jouets enfant'] }
+    { id: 'design', label: 'Déco & design', picto: 'Déco & maison', univers: ['Design'], cats: ['Déco & maison', 'Art de la table'] },
+    { id: 'creatif', label: 'Créatif', picto: 'Papeterie', univers: ['Créatif'], cats: ['Expériences & ateliers', 'Déco & maison'] },
+    { id: 'gourmand', label: 'Gourmandise', picto: 'Gastronomie', univers: ['Gourmand', 'Café & thé'], cats: ['Gastronomie'] },
+    { id: 'nature', label: 'Nature & plantes', picto: 'Plantes & fleurs', univers: ['Nature'], cats: ['Beauté & soin', 'Bougies & parfums'] },
+    { id: 'cocooning', label: 'Cocooning', picto: 'Bougies & parfums', univers: ['Cocooning'], cats: ['Bougies & parfums', 'Déco & maison'] },
+    { id: 'bienetre', label: 'Bien-être', picto: 'Beauté & soin', univers: ['Bien-être', 'Sport & bien-être'], cats: ['Beauté & soin', 'Bougies & parfums'] },
+    { id: 'jeux', label: 'Jeux', picto: 'Jeux & loisirs', univers: ['Jeux', 'Jeux vidéo'], cats: ['Jouets enfant'] },
+    { id: 'humour', label: 'Humour', picto: 'Humour', univers: ['Humour'], cats: [] },
+    { id: 'voyage', label: 'Voyage & montagne', picto: 'Voyage', univers: ['Voyage', 'Montagne'], cats: ['Livres', 'Mode & accessoires'] },
+    { id: 'paris', label: 'Paris', picto: 'Paris', univers: ['Paris'], cats: [] },
+    { id: 'lecture', label: 'Lecture', picto: 'Livres', univers: ['Lecture'], cats: ['Livres'] },
+    { id: 'curiosite', label: 'Sciences & curiosités', picto: 'Curiosités', univers: ['Curiosité', 'Astro', 'Animaux'], cats: ['Livres'] },
+    { id: 'mode', label: 'Mode', picto: 'Mode & accessoires', univers: ['Mode'], cats: ['Mode & accessoires'] },
+    { id: 'tech', label: 'Tech & photo', picto: 'High-tech & photo', univers: ['Tech', 'Photo'], cats: [] },
+    { id: 'musique', label: 'Musique', picto: 'Musique', univers: ['Musique'], cats: [] },
+    { id: 'amour', label: 'Amour', picto: 'Amour', univers: ['Amour'], cats: ['Bougies & parfums', 'Mode & accessoires'] },
+    { id: 'eveil', label: 'Éveil des tout-petits', picto: 'Jouets enfant', univers: ['Éveil', 'Famille'], cats: ['Jouets enfant'] }
   ];
   var CARACTERES = [
-    { id: 'drole', label: 'L’humour', univers: ['Humour', 'Jeux', 'Jeux vidéo'], cats: [] },
-    { id: 'confort', label: 'Le confort', univers: ['Cocooning', 'Bien-être', 'Sport & bien-être'], cats: ['Bougies & parfums', 'Beauté & soin'] },
-    { id: 'beau', label: 'Les belles choses', univers: ['Design', 'Mode', 'Paris'], cats: ['Déco & maison', 'Art de la table', 'Mode & accessoires'] },
-    { id: 'curieux', label: 'La curiosité', univers: ['Curiosité', 'Lecture', 'Astro', 'Voyage', 'Montagne'], cats: ['Livres', 'Expériences & ateliers'] },
-    { id: 'gourmand', label: 'La gourmandise', univers: ['Gourmand', 'Café & thé'], cats: ['Gastronomie'] },
-    { id: 'manuel', label: 'Le fait main', univers: ['Créatif', 'Nature', 'Photo'], cats: ['Expériences & ateliers', 'Art de la table'] }
+    { id: 'drole', label: 'L’humour', perso: 'eclat', couleur: 'orange', univers: ['Humour', 'Jeux', 'Jeux vidéo'], cats: [] },
+    { id: 'confort', label: 'Le confort', perso: 'fantome', couleur: 'bleu', univers: ['Cocooning', 'Bien-être', 'Sport & bien-être'], cats: ['Bougies & parfums', 'Beauté & soin'] },
+    { id: 'beau', label: 'Les belles choses', perso: 'fleur', couleur: 'rose', univers: ['Design', 'Mode', 'Paris'], cats: ['Déco & maison', 'Art de la table', 'Mode & accessoires'] },
+    { id: 'curieux', label: 'La curiosité', perso: 'surpris', couleur: 'bleu', univers: ['Curiosité', 'Lecture', 'Astro', 'Voyage', 'Montagne'], cats: ['Livres', 'Expériences & ateliers'] },
+    { id: 'gourmand', label: 'La gourmandise', perso: 'coeur', couleur: 'orange', univers: ['Gourmand', 'Café & thé'], cats: ['Gastronomie'] },
+    { id: 'manuel', label: 'Le fait main', perso: 'trefle', couleur: 'vert', univers: ['Créatif', 'Nature', 'Photo'], cats: ['Expériences & ateliers', 'Art de la table'] }
   ];
+  // Personnage de chaque réponse à « Pour qui ? » (cartes du quiz et machine à cadeaux).
+  var PERSO_QUI = {
+    Femme: ['fleur', 'rose'], Homme: ['trefle', 'bleu'], Couple: ['coeur', 'orange'], Famille: ['soleil', 'jaune'],
+    Ado: ['eclat', 'orange'], Enfant: ['carre', 'jaune'], 'Bébé': ['bulle', 'bleu'], 'Collègue': ['croix', 'vert'], 'Secret Santa': ['hexa', 'rose']
+  };
+  // Compte Instagram de Tadaaa (écran « Bon cadeau ! »). Laisser vide pour masquer le bloc.
+  var INSTAGRAM = '';
 
   var QUESTIONS = [
     {
@@ -146,7 +160,7 @@
         { valeur: 'Ado', label: 'Un ado' }, { valeur: 'Enfant', label: 'Un enfant' },
         { valeur: 'Bébé', label: 'Un bébé' }, { valeur: 'Collègue', label: 'Un collègue' },
         { valeur: 'Secret Santa', label: 'Un Secret Santa' }
-      ],
+      ].map(function (o) { o.perso = PERSO_QUI[o.valeur][0]; o.couleur = PERSO_QUI[o.valeur][1]; return o; }),
       scene: { fond: '#FDEDF4', perso: 'fleur', couleur: 'rose', bulle: '« Dites-m’en un peu plus. Je ne cherche pas pareil pour mamie et pour un collègue. »' }
     },
     {
@@ -160,13 +174,13 @@
       type: 'multi', max: 3, passer: 'Je ne sais pas trop', resume: function (v) {
         return v && v.length ? v.map(function (id) { return (trouver(PASSIONS, id) || {}).label; }).filter(Boolean).join(', ') : 'Toutes les passions';
       },
-      options: PASSIONS.map(function (p) { return { valeur: p.id, label: p.label }; }),
+      options: PASSIONS.map(function (p) { return { valeur: p.id, label: p.label, picto: p.picto }; }),
       scene: { fond: '#EEF3FE', perso: 'surpris', couleur: 'bleu', bulle: '« Hmm… je commence à voir le genre de personne. »' }
     },
     {
       cle: 'caractere', titre: 'Ce qui lui ressemble le plus ?', sousTitre: 'Un seul choix, celui qui vient en premier.',
       type: 'pastilles', passer: 'Difficile à dire', resume: function (v) { var c = trouver(CARACTERES, v); return c ? c.label : ''; },
-      options: CARACTERES.map(function (c) { return { valeur: c.id, label: c.label }; }),
+      options: CARACTERES.map(function (c) { return { valeur: c.id, label: c.label, perso: c.perso, couleur: c.couleur }; }),
       scene: { fond: '#E6F1EB', perso: 'croix', couleur: 'vert', bulle: '« Dernière ligne droite. Là, je cerne le personnage. »' }
     },
     {
@@ -391,6 +405,7 @@
 
   window.Tadaaa = {
     COULEURS: COULEURS, QUESTIONS: QUESTIONS, PASSIONS: PASSIONS, CARACTERES: CARACTERES, ZONES: ZONES,
+    PERSO_QUI: PERSO_QUI, INSTAGRAM: INSTAGRAM, trouver: trouver,
     perso: perso, remplirPersos: remplirPersos, picto: picto,
     reponses: reponses, ecrireStockage: ecrireStockage, versUrl: versUrl,
     chargerCatalogue: chargerCatalogue, evaluer: evaluer, estMoment: estMoment, evaluerBoutique: evaluerBoutique,

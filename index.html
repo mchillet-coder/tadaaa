@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="page-accueil">
 
 <header class="entete">
   <div class="conteneur entete__barre">
@@ -34,6 +34,24 @@
         <span class="pastille pastille--jaune hero__compteur" id="compteur-noel">Noël approche</span>
         <h1>Offrez un cadeau qui lui <span class="souligne">ressemble<svg viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14C30 2 50 22 76 12S120 2 146 14 186 20 196 8" fill="none" stroke="#F5793B" stroke-width="7" stroke-linecap="round"/></svg></span>.</h1>
         <p class="hero__intro">Pas un cadeau de plus&nbsp;: le sien. On vous aide à le trouver en quelques questions, près de chez vous ou en ligne.</p>
+
+        <!-- Version mobile : les 5 personnages, trois atouts et le bouton dans la zone du pouce -->
+        <div class="hero-mobile">
+          <div class="hero-mobile__persos" aria-hidden="true">
+            <span data-perso="soleil" data-couleur="jaune" class="flotte"></span>
+            <span data-perso="fleur" data-couleur="rose" class="flotte flotte--2"></span>
+            <span data-perso="trefle" data-couleur="bleu" class="flotte flotte--3"></span>
+            <span data-perso="coeur" data-couleur="orange" class="flotte flotte--2"></span>
+            <span data-perso="croix" data-couleur="vert" class="flotte"></span>
+          </div>
+          <ul class="hero-mobile__atouts">
+            <li class="pastille pastille--blanc">✦ Sans inscription</li>
+            <li class="pastille pastille--blanc">✦ 2 minutes</li>
+            <li class="pastille pastille--blanc">✦ Idées originales</li>
+          </ul>
+          <a class="btn btn--jaune btn--grand btn--plein hero-mobile__cta" href="zone.html">Commencer le quiz <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="currentColor"/></svg></a>
+          <p class="hero-mobile__sous">En Martinique ou en ligne, à vous de choisir.</p>
+        </div>
 
         <form class="choix-zone-rapide" action="quiz.html" method="get">
           <fieldset>

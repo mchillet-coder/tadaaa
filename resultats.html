@@ -10,7 +10,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="page-resultats">
+<script src="assets/js/commun.js"></script>
+<script src="assets/js/tirage.js"></script>
 
 <header class="entete">
   <div class="conteneur entete__barre">
@@ -23,9 +25,11 @@
 
 <main class="conteneur">
   <section class="res-hero" aria-labelledby="res-titre">
+    <svg class="res-etoile" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="#FCCA59"/></svg>
     <svg viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 220C80 150 160 260 260 200S420 60 520 120 620 230 640 180" fill="none" stroke="#F296BD" stroke-width="18" stroke-linecap="round" opacity="0.45"/></svg>
     <div class="res-hero__texte">
       <h1 id="res-titre">Tadaaa&nbsp;!</h1>
+      <p class="res-recap" id="res-recap"></p>
       <div class="res-hero__chips" id="res-chips"></div>
     </div>
     <div class="res-hero__persos" aria-hidden="true">
@@ -37,6 +41,7 @@
 
   <div class="res-corps">
     <aside class="filtres" aria-label="Affiner les résultats">
+      <h2 class="filtres__titre-mobile">Affiner les idées</h2>
       <form id="filtres" class="filtres__corps">
         <fieldset id="filtre-zone">
           <legend>Où acheter</legend>
@@ -72,8 +77,11 @@
       </form>
     </aside>
 
-    <div id="resultats" aria-live="polite">
-      <p class="chargement">On fouille le catalogue…</p>
+    <div class="res-liste">
+      <div id="resultats" aria-live="polite">
+        <p class="chargement">On fouille le catalogue…</p>
+      </div>
+      <a class="btn btn--blanc btn--grand btn--plein res-refaire" href="zone.html">Refaire le quiz</a>
     </div>
   </div>
 </main>
@@ -91,7 +99,6 @@
   <div class="conteneur pied__bas">© <span data-annee>2026</span> Tadaaa · Prix relevés en novembre 2026, à vérifier sur le site de chaque boutique.</div>
 </footer>
 
-<script src="assets/js/commun.js"></script>
 <script src="assets/js/resultats.js"></script>
 </body>
 </html>

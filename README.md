@@ -43,6 +43,25 @@ Pour le rhum et les liqueurs, la carte affiche le message sanitaire de la loi É
 
 Les boutons « Voir le cadeau » utilisent la colonne **Lien suivi** (nouvel onglet, `rel="sponsored"`).
 
+## Version mobile (écrans de moins de 720 px)
+
+Sur téléphone, le site suit les maquettes mobiles :
+
+- **Accueil** : titre, les 5 personnages, trois atouts et un gros bouton jaune « Commencer le quiz ».
+- **Quiz** : fond crème, barre de progression orange « n / 6 », grandes cartes avec personnage ou icône,
+  curseur de budget, bouton jaune « Continuer » toujours sous le pouce.
+- **Machine à cadeaux** (`assets/js/tirage.js`) : à la fin du quiz, une machine à sous tourne environ
+  2,5 secondes et s'arrête sur la personne, le budget et le premier goût choisi. Un appui la passe.
+- **Résultats** : grand « tadaaa ! » et liste compacte. Un appui sur une idée ouvre sa **fiche**
+  (« Pourquoi ça va lui plaire », bouton « Voir l’offre en ligne »). En revenant sur Tadaaa après
+  avoir ouvert l’offre, l’écran **« Bon cadeau ! »** propose de partager la liste ou de refaire le quiz.
+
+Le bloc Instagram de l’écran « Bon cadeau ! » est masqué tant que l’adresse du compte n’est pas
+renseignée : mettez-la dans `INSTAGRAM` en haut de `assets/js/commun.js`
+(par exemple `var INSTAGRAM = 'https://www.instagram.com/votre-compte/';`).
+
+Sur ordinateur, l’affichage ne change pas.
+
 ## Mettre à jour les données
 
 Après avoir modifié un des fichiers Excel (et l’avoir **enregistré**) :

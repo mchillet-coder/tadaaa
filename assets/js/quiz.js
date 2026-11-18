@@ -52,8 +52,12 @@
 
     // progression
     var pistes = $('pistes').children;
-    for (var k = 0; k < pistes.length; k++) pistes[k].style.background = k <= i ? PALETTE[k].c : '';
-    $('progression-texte').textContent = 'Question ' + (i + 1) + ' sur ' + Q.length;
+    for (var k = 0; k < pistes.length; k++) {
+      pistes[k].style.background = k <= i ? PALETTE[k].c : '';
+      pistes[k].toggleAttribute('data-rempli', k <= i); // barre orange continue sur mobile
+    }
+    $('progression-texte').innerHTML = '<span class="long">Question </span>' + (i + 1) +
+      '<span class="long"> sur </span><span class="court"> / </span>' + Q.length;
 
     // scène illustrée
     $('scene').style.background = q.scene.fond;
@@ -74,15 +78,20 @@
     $('question-titre').textContent = q.titre.replace('lui', r.qui === 'Couple' || r.qui === 'Famille' ? 'leur' : 'lui');
     $('question-sous-titre').textContent = q.sousTitre;
     var boite = $('question-choix');
-    boite.className = 'choix apparait' + (q.type === 'cartes' ? ' choix--cartes' : '');
+    // Sur mobile : grandes cartes en grille (2 colonnes) ou lignes en liste, comme les maquettes.
+    boite.className = 'choix apparait' + (q.type === 'cartes' ? ' choix--cartes choix--liste' : ' choix--grille');
     boite.setAttribute('role', q.type === 'multi' ? 'group' : 'radiogroup');
     boite.setAttribute('aria-labelledby', 'question-titre');
     boite.innerHTML = q.options.map(function (o, n) {
       var col = CHOIX_COULEURS[n % CHOIX_COULEURS.length];
+      var icone = o.perso ? '<span class="choix__icone" data-perso="' + o.perso + '" data-couleur="' + o.couleur + '"></span>'
+        : o.picto ? '<span class="choix__icone choix__icone--picto" style="background:' + T.picto(o.picto).fond + '">' + T.picto(o.picto).svg + '</span>' : '';
       return '<button type="button" class="choix__btn" data-valeur="' + T.echapper(o.valeur) + '" style="--c:' + col.c + ';--c-texte:' + col.t + '">' +
-        (o.perso ? '<span data-perso="' + o.perso + '" data-couleur="' + o.couleur + '"></span>' : '') + T.echapper(o.label) + '</button>';
+        icone + '<span class="choix__label">' + T.echapper(o.label) + '</span></button>';
     }).join('');
     T.remplirPersos(boite);
+    $('question-extra').innerHTML = q.cle === 'budget' ? curseurBudget() : '';
+    if (q.cle === 'budget') brancherCurseur();
     majChoix();
 
     // boutons du bas
@@ -93,7 +102,44 @@
     majSuivant();
 
     if (focus) $('question-titre').focus({ preventScroll: true });
-    if (focus && window.innerWidth < 1080) $('panneau').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (focus && mobile()) window.scrollTo(0, 0);
+    else if (focus && window.innerWidth < 1080) $('panneau').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function mobile() { return window.matchMedia('(max-width: 720px)').matches; }
+
+  /* ---------- Curseur de budget (mobile) ----------
+     Le curseur choisit la tranche de budget qui contient le montant. */
+  var TRANCHES = [
+    { v: 'Moins de 25 €', max: 24, milieu: 20 }, { v: '25–50 €', max: 50, milieu: 30 },
+    { v: '50–100 €', max: 100, milieu: 75 }, { v: '100–200 €', max: 200, milieu: 150 },
+    { v: '200 € et plus', max: Infinity, milieu: 250 }
+  ];
+  function trancheDe(montant) { for (var i = 0; i < TRANCHES.length; i++) if (montant <= TRANCHES[i].max) return TRANCHES[i].v; }
+  function milieuDe(v) { var t = TRANCHES.filter(function (x) { return x.v === v; })[0]; return t ? t.milieu : 30; }
+  function curseurBudget() {
+    var m = milieuDe(r.budget);
+    return '<div class="budget-curseur">' +
+      '<output class="budget-curseur__valeur" id="budget-valeur" for="budget-range"></output>' +
+      '<input type="range" id="budget-range" min="10" max="250" step="5" value="' + m + '" aria-label="Budget en euros">' +
+      '</div>';
+  }
+  function afficherMontant(m) {
+    $('budget-valeur').textContent = m >= 250 ? '250 € +' : m + ' €';
+    var curseur = $('budget-range');
+    curseur.style.setProperty('--p', ((m - 10) / 240 * 100) + '%');
+    $('budget-valeur').classList.toggle('vide', !r.budget);
+  }
+  function brancherCurseur() {
+    var curseur = $('budget-range');
+    afficherMontant(+curseur.value);
+    curseur.addEventListener('input', function () {
+      var m = +curseur.value;
+      r.budget = trancheDe(m);
+      T.ecrireStockage(r);
+      afficherMontant(m);
+      majChoix(); majSuivant();
+    });
   }
 
   function bulle(q) {
@@ -136,6 +182,8 @@
   function suivant() {
     T.ecrireStockage(r);
     if (modeEdition || index === Q.length - 1) {
+      // Fin du quiz : la machine à cadeaux tourne à l'arrivée sur les résultats (mobile).
+      if (!modeEdition) { try { sessionStorage.setItem('tadaaa-tirage', '1'); } catch (e) { /* sans stockage, pas d'animation */ } }
       location.href = 'resultats.html?' + T.versUrl(r);
     } else {
       afficher(index + 1, true);
@@ -155,6 +203,7 @@
     } else {
       r[q.cle] = v;
       T.ecrireStockage(r);
+      if (q.cle === 'budget' && $('budget-range')) { $('budget-range').value = milieuDe(v); afficherMontant(milieuDe(v)); }
       majChoix(); majSuivant();
       minuteur = setTimeout(suivant, 280); // petit temps pour voir la sélection
     }
